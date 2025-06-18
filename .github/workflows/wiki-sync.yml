@@ -6,14 +6,6 @@ on:
     types: [ published ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test
-        run: |
-          echo ${{ format('refs/heads/{0}', github.event.repository.default_branch) }}
-          echo ${{ github.ref }}
-  
   wiki:
     permissions:
       contents: write
@@ -21,3 +13,4 @@ jobs:
     if: ${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
     with:
       path: wiki/
+      only-default-branch: true
